@@ -11,10 +11,6 @@ use anyhow::{bail, Context};
 use napi::{bindgen_prelude::*, Task};
 use serde::{Deserialize, Serialize};
 use swc_common::FileName;
-use swc_estree_codegen::{
-    writer::basic::{BasicestreeWriter, BasicestreeWriterConfig, IndentType, LineFeed},
-    CodeGenerator, CodegenConfig, Emit,
-};
 use swc_nodejs_common::{deserialize_json, get_deserialized, MapErr};
 
 use crate::util::try_with;
