@@ -11,6 +11,7 @@ use anyhow::{bail, Context};
 use napi::{bindgen_prelude::*, Task};
 use serde::{Deserialize, Serialize};
 use swc_common::FileName;
+use swc_ecma_parser::parse_file_as_program;
 use swc_nodejs_common::{deserialize_json, get_deserialized, MapErr};
 
 use crate::util::try_with;
@@ -27,13 +28,11 @@ fn init() {
 
 #[napi_derive::napi(object)]
 #[derive(Debug, Serialize)]
-pub struct TransformOutput {
-    pub code: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub map: Option<String>,
+pub struct AstOutput {
+    pub ast: String,
 }
 
-struct MinifyTask {
+struct ParseTask {
     code: String,
     options: String,
 }
@@ -49,9 +48,9 @@ pub struct MinifyOptions {
 }
 
 #[napi]
-impl Task for MinifyTask {
-    type JsValue = TransformOutput;
-    type Output = TransformOutput;
+impl Task for ParseTask {
+    type JsValue = AstOutput;
+    type Output = AstOutput;
 
     fn compute(&mut self) -> napi::Result<Self::Output> {
         let opts = deserialize_json(&self.options)
@@ -66,7 +65,7 @@ impl Task for MinifyTask {
     }
 }
 
-fn minify_inner(code: &str, opts: MinifyOptions) -> anyhow::Result<TransformOutput> {
+fn minify_inner(code: &str, opts: MinifyOptions) -> anyhow::Result<AstOutput> {
     try_with(|cm, handler| {
         let filename = match opts.filename {
             Some(v) => FileName::Real(v.into()),
@@ -76,7 +75,7 @@ fn minify_inner(code: &str, opts: MinifyOptions) -> anyhow::Result<TransformOutp
         let fm = cm.new_source_file(filename, code.into());
 
         let mut errors = vec![];
-        let ss = swc_estree_parser::parse_file::<swc_estree_ast::Stylesheet>(
+        let ss = parse_file_as_program(
             &fm,
             swc_estree_parser::parser::ParserConfig {
                 allow_wrong_line_comments: false,
@@ -141,7 +140,7 @@ fn minify_inner(code: &str, opts: MinifyOptions) -> anyhow::Result<TransformOutp
             None
         };
 
-        Ok(TransformOutput { code, map })
+        Ok(AstOutput { code, map })
     })
 }
 
@@ -159,7 +158,7 @@ fn minify(code: Buffer, opts: Buffer, signal: Option<AbortSignal>) -> AsyncTask<
 
 #[allow(unused)]
 #[napi]
-pub fn minify_sync(code: Buffer, opts: Buffer) -> napi::Result<TransformOutput> {
+pub fn minify_sync(code: Buffer, opts: Buffer) -> napi::Result<AstOutput> {
     swc_nodejs_common::init_default_trace_subscriber();
     let code = String::from_utf8_lossy(code.as_ref()).to_string();
     let opts = get_deserialized(opts)?;
