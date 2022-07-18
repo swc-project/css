@@ -11,7 +11,7 @@ use anyhow::{bail, Context};
 use napi::{bindgen_prelude::*, Task};
 use serde::{Deserialize, Serialize};
 use swc_common::FileName;
-use swc_ecma_parser::parse_file_as_program;
+use swc_ecma_parser::{parse_file_as_program, EsConfig, Syntax};
 use swc_nodejs_common::{deserialize_json, get_deserialized, MapErr};
 
 use crate::util::try_with;
@@ -41,10 +41,23 @@ struct ParseTask {
 #[serde(rename_all = "camelCase")]
 pub struct ParseOptions {
     #[serde(default)]
-    filename: Option<String>,
+    syntax: Syntax,
 
     #[serde(default)]
-    source_map: bool,
+    format: AstFormat,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub enum AstFormat {
+    Babel,
+    Acorn,
+}
+
+impl Default for AstFormat {
+    fn default() -> Self {
+        AstFormat::Babel
+    }
 }
 
 #[napi]
@@ -75,13 +88,7 @@ fn minify_inner(code: &str, opts: ParseOptions) -> anyhow::Result<AstOutput> {
         let fm = cm.new_source_file(filename, code.into());
 
         let mut errors = vec![];
-        let ss = parse_file_as_program(
-            &fm,
-            swc_estree_parser::parser::ParserConfig {
-                allow_wrong_line_comments: false,
-            },
-            &mut errors,
-        );
+        let ss = parse_file_as_program(&fm, Syntax::Es(EsConfig {}), &mut errors);
 
         let mut ss = match ss {
             Ok(v) => v,
