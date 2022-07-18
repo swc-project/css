@@ -1,3 +1,3 @@
-# `@swc/css-linux-x64-musl`
+# `@swc/estree-linux-x64-musl`
 
-This is the **x86_64-unknown-linux-musl** binary for `@swc/css`
+This is the **x86_64-unknown-linux-musl** binary for `@swc/estree`

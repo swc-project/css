@@ -1,3 +1,3 @@
-# `@swc/css-linux-arm-gnueabihf`
+# `@swc/estree-linux-arm-gnueabihf`
 
-This is the **armv7-unknown-linux-gnueabihf** binary for `@swc/css`
+This is the **armv7-unknown-linux-gnueabihf** binary for `@swc/estree`

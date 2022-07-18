@@ -1,3 +1,3 @@
-# `@swc/css-darwin-x64`
+# `@swc/estree-darwin-x64`
 
-This is the **x86_64-apple-darwin** binary for `@swc/css`
+This is the **x86_64-apple-darwin** binary for `@swc/estree`

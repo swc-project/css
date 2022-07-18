@@ -1,5 +1,5 @@
 {
-  "name": "@swc/css-win32-arm64-msvc",
+  "name": "@swc/estree-win32-arm64-msvc",
   "version": "0.0.1",
   "os": [
     "win32"
@@ -7,9 +7,9 @@
   "cpu": [
     "arm64"
   ],
-  "main": "css.win32-arm64-msvc.node",
+  "main": "estree.win32-arm64-msvc.node",
   "files": [
-    "css.win32-arm64-msvc.node"
+    "estree.win32-arm64-msvc.node"
   ],
   "description": "Super-fast alternative for babel",
   "keywords": [

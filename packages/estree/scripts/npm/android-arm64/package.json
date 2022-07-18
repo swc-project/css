@@ -1,5 +1,5 @@
 {
-  "name": "@swc/css-android-arm64",
+  "name": "@swc/estree-android-arm64",
   "version": "0.0.1",
   "os": [
     "android"
@@ -7,9 +7,9 @@
   "cpu": [
     "arm64"
   ],
-  "main": "css.android-arm64.node",
+  "main": "estree.android-arm64.node",
   "files": [
-    "css.android-arm64.node"
+    "estree.android-arm64.node"
   ],
   "description": "Super-fast alternative for babel",
   "keywords": [

@@ -1,5 +1,5 @@
 {
-  "name": "@swc/css-darwin-x64",
+  "name": "@swc/estree-darwin-x64",
   "version": "0.0.1",
   "os": [
     "darwin"
@@ -7,9 +7,9 @@
   "cpu": [
     "x64"
   ],
-  "main": "css.darwin-x64.node",
+  "main": "estree.darwin-x64.node",
   "files": [
-    "css.darwin-x64.node"
+    "estree.darwin-x64.node"
   ],
   "description": "Super-fast alternative for babel",
   "keywords": [

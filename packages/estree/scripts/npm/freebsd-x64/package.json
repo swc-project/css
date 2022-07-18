@@ -1,5 +1,5 @@
 {
-  "name": "@swc/css-freebsd-x64",
+  "name": "@swc/estree-freebsd-x64",
   "version": "0.0.1",
   "os": [
     "freebsd"
@@ -7,9 +7,9 @@
   "cpu": [
     "x64"
   ],
-  "main": "css.freebsd-x64.node",
+  "main": "estree.freebsd-x64.node",
   "files": [
-    "css.freebsd-x64.node"
+    "estree.freebsd-x64.node"
   ],
   "description": "Super-fast alternative for babel",
   "keywords": [

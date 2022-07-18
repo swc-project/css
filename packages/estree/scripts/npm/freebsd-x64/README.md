@@ -1,3 +1,3 @@
-# `@swc/css-freebsd-x64`
+# `@swc/estree-freebsd-x64`
 
-This is the **x86_64-unknown-freebsd** binary for `@swc/css`
+This is the **x86_64-unknown-freebsd** binary for `@swc/estree`

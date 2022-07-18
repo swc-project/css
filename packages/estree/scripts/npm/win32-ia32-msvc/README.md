@@ -1,3 +1,3 @@
-# `@swc/css-win32-ia32-msvc`
+# `@swc/estree-win32-ia32-msvc`
 
-This is the **i686-pc-windows-msvc** binary for `@swc/css`
+This is the **i686-pc-windows-msvc** binary for `@swc/estree`

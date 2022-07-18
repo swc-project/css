@@ -1,5 +1,5 @@
 {
-  "name": "@swc/css-android-arm-eabi",
+  "name": "@swc/estree-android-arm-eabi",
   "version": "1.2.122",
   "os": [
     "android"
@@ -7,9 +7,9 @@
   "cpu": [
     "arm"
   ],
-  "main": "css.android-arm-eabi.node",
+  "main": "estree.android-arm-eabi.node",
   "files": [
-    "css.android-arm-eabi.node"
+    "estree.android-arm-eabi.node"
   ],
   "description": "Super-fast alternative for babel",
   "keywords": [

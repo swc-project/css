@@ -1,5 +1,5 @@
 {
-  "name": "@swc/css-linux-arm64-gnu",
+  "name": "@swc/estree-linux-arm64-gnu",
   "version": "0.0.1",
   "os": [
     "linux"
@@ -7,9 +7,9 @@
   "cpu": [
     "arm64"
   ],
-  "main": "css.linux-arm64-gnu.node",
+  "main": "estree.linux-arm64-gnu.node",
   "files": [
-    "css.linux-arm64-gnu.node"
+    "estree.linux-arm64-gnu.node"
   ],
   "libc": [
     "glibc"
